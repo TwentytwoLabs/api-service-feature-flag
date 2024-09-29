@@ -36,7 +36,7 @@ final class ApiServiceStorage implements StorageInterface
         $mapper = $this->options['collection']['mapper'];
 
         do {
-            /** @var ErrorInterface|ResourceInterface $response */
+            /** @var Collection|ErrorInterface $response */
             $response = $this->client->call(
                 operationId: $this->options['collection']['operationId'],
                 params: array_merge($this->options['collection']['params'], [$mapper['page'] => $page])
@@ -44,7 +44,7 @@ final class ApiServiceStorage implements StorageInterface
 
             ++$page;
 
-            if (!$response instanceof Collection) {
+            if ($response instanceof ErrorInterface) {
                 return [];
             }
 

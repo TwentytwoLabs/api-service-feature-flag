@@ -119,6 +119,8 @@ final class ApiServiceStorageTest extends TestCase
 
     public function testShouldNotGetOneFeatureBecauseThereAreSomeErrors(): void
     {
+        $feature = $this->createMock(FeatureInterface::class);
+
         $response = $this->createMock(ErrorInterface::class);
 
         $this->denormalizer->expects($this->never())->method('denormalize');
